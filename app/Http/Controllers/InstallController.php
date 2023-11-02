@@ -191,14 +191,15 @@ class InstallController extends Controller
 
     public function import_sql()
     {
-        try {
-            $sql_path = base_path('installation/backup/database.sql');
-            DB::unprepared(file_get_contents($sql_path));
-            return redirect()->route('step5', ['token' => bcrypt('step_5')]);
-        } catch (\Exception $exception) {
-            session()->flash('error', 'Your database is not clean, do you want to clean database then import?');
-            return back();
-        }
+        return redirect()->route('step5', ['token' => bcrypt('step_5')]);
+        // try {
+        //     $sql_path = base_path('installation/backup/database.sql');
+        //     DB::unprepared(file_get_contents($sql_path));
+        //     return redirect()->route('step5', ['token' => bcrypt('step_5')]);
+        // } catch (\Exception $exception) {
+        //     session()->flash('error', 'Your database is not clean, do you want to clean database then import?');
+        //     return back();
+        // }
     }
 
     public function force_import_sql()
